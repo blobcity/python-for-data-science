@@ -1,0 +1,304 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Hello World\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Every programing language course starts with a \"Hello World\". We will do the same.\n",
+    "\n",
+    "print('Hello World')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Any line starting with an # is a comment in Python. You might be used to // from other programming languages.\n",
+    "\n",
+    "# This line is a comment\n",
+    "# The line below this is an actual program line.\n",
+    "\n",
+    "myNumber = 10\n",
+    "\n",
+    "# The above line defines a variable called myNumber and assigns it a value of 10"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "10\n"
+     ]
+    }
+   ],
+   "source": [
+    "# We can print the value of the above variable using the print function. \n",
+    "# This works similar to printing \"Hello World\"\n",
+    "\n",
+    "print(myNumber)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "10"
+      ]
+     },
+     "execution_count": 4,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "# But there is a shortcut you can use for printing. \n",
+    "# Just the variable name in a single line, instructs Python to print the value\n",
+    "\n",
+    "myNumber\n",
+    "\n",
+    "# The print(myNumber) and just myNumber, will both get the same results"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# In additon, you can view general information about the variable, by adding a ? before or after the variable.\n",
+    "\n",
+    "myNumber?"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "?myNumber\n",
+    "\n",
+    "# Also does the same thing"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Now how about defining our very first String type variable\n",
+    "\n",
+    "myString = 'Hello World'"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 8,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Hello World\n"
+     ]
+    },
+    {
+     "data": {
+      "text/plain": [
+       "'Hello World'"
+      ]
+     },
+     "execution_count": 8,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "# Now print the string to see if it was set. Again, both methods will work\n",
+    "\n",
+    "print(myString)\n",
+    "\n",
+    "myString"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 9,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Let's check the type of this variable\n",
+    "\n",
+    "myString?"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 10,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "'\\nYou will notice that the type of myNumber was int and the type of myString is str.\\nHowever, we never set the type of the variable.\\n\\nUnlike some of the other languages, Python does not require you set the type of a variable. \\nIt will auto infer the type from the value that is set to the variable. \\n'"
+      ]
+     },
+     "execution_count": 10,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "\"\"\"\n",
+    "You will notice that the type of myNumber was int and the type of myString is str.\n",
+    "However, we never set the type of the variable.\n",
+    "\n",
+    "Unlike some of the other languages, Python does not require you set the type of a variable. \n",
+    "It will auto infer the type from the value that is set to the variable. \n",
+    "\"\"\"\n",
+    "\n",
+    "# We also did something interesting above. We used our first multi-line comment.\n",
+    "# Did we actually do a multi-line comment? The answer is actually no. But something like what you see above\n",
+    "# is a common practice followed by many Python developers. \n",
+    "\n",
+    "# What you see above is not actually a multi-line comment. It is a tripe quoted String literal. \n",
+    "\n",
+    "# So, when you run this cell, you will notice that the String literal will get printed. \n",
+    "# The lines with an # in them however do not get printed, because a line with a # is actually a comment"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 11,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "'\\nThis is a\\nmulti-line\\nHello World\\n'"
+      ]
+     },
+     "execution_count": 11,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "# There are other ways to define a string too\n",
+    "\n",
+    "myString = 'Hello World'\n",
+    "myString = \"Hello World\"\n",
+    "\n",
+    "# Whether a string is defined within ' or within \", it means the same thing. Both sytax are allowed.\n",
+    "\n",
+    "# Similarly, one can also define multi-line strings in both ways\n",
+    "\n",
+    "'''\n",
+    "This is a\n",
+    "multi-line\n",
+    "Hello World\n",
+    "'''\n",
+    "\n",
+    "\"\"\"\n",
+    "This is a\n",
+    "multi-line\n",
+    "Hello World\n",
+    "\"\"\""
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "\n",
+      "This is a\n",
+      "multi-line\n",
+      "Hello World\n",
+      "\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Let's see how to set a variable to a multi-line String\n",
+    "\n",
+    "myString = \"\"\"\n",
+    "This is a\n",
+    "multi-line\n",
+    "Hello World\n",
+    "\"\"\"\n",
+    "\n",
+    "print(myString)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Exercise 1\n",
+    "\n",
+    "Now its time for you to practice some code. Complete the following steps as part of this exercise:\n",
+    "1. Create a variable called myVariable and set 3.4 as its value.\n",
+    "2. Check the type of this variable using the ? operator. Check if it shows int or something else?\n",
+    "3. Now try to set the value of this same variable to a string \"Three Point Four\". See what happens. \n",
+    "4. Now print the value of myVariable and see what it shows"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "***\n",
+    "Copyright (c) 2020, BlobCity, Inc."
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.8.4"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 4
+}
