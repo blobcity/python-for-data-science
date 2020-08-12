@@ -1,0 +1,1025 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "[<img src=\"http://cloud.blobcity.net/assets/images/badge.png\" height=\"25\" style=\"margin-bottom:-15px\" />](https://cloud.blobcity.com/#/ps/shared-cloudbook/66c4fcaa-b0e4-4e0a-b275-49cdf007667a)\n",
+    "\n",
+    "# List\n",
+    "\n",
+    "A list is similar to a tuple, but is mutable in nature. Lists are defined by square brackts instead of round brackets. We can add and remove elements from list, thereby giving flexibility to developers.\n",
+    "\n",
+    "Lists in Python are very similar to lists and collection classes from other languages. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[1, 2, 3]\n"
+     ]
+    }
+   ],
+   "source": [
+    "my_list = [1,2,3]\n",
+    "print(my_list)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "One can easily convert a tuple to a list. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "['Orange', 'Apple', 'Banana']\n"
+     ]
+    }
+   ],
+   "source": [
+    "tup = ('Orange', 'Apple', 'Banana')\n",
+    "\n",
+    "my_list = list(tup)\n",
+    "\n",
+    "print(my_list)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "When a tuple is converted to a list, the order of elements is retained. The list contains elements in the same order as they appear within the tuple.\n",
+    "\n",
+    "## Modifying elements within a list\n",
+    "Lists are mutable, so we can carry out an in-place change of any elements within the list. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "['Orange', 'Pineapple', 'Banana']\n"
+     ]
+    }
+   ],
+   "source": [
+    "my_list[1] = 'Pineapple'\n",
+    "print(my_list);"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "We can see that we managed to change `Apple` to `Pineapple` within the list. The first element in the list is at index `0`\n",
+    "\n",
+    "## Adding elements to a list\n",
+    "Just like we can modify elements in a list, we can add more elements into the list. Adding an element increases the size of the list. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "range(0, 10)\n",
+      "[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\n"
+     ]
+    }
+   ],
+   "source": [
+    "gen = range(10)\n",
+    "print(gen)\n",
+    "\n",
+    "my_list = list(gen)\n",
+    "print(my_list)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The `gen` function generates a sequence of integers starting from 0 upto the number specified. We can pass the `range(0,10)` to a list by using the `list` function. This creates a list of integers start from 0 and ending with 9."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\n"
+     ]
+    }
+   ],
+   "source": [
+    "my_list.append(10)\n",
+    "print(my_list)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The `append` function provide on a list, adds the specified element to the end of the list. As we can see in the above example, the number 10 got added after the number 9. \n",
+    "\n",
+    "Instead of `append` we can also choose to `insert` an item at a specific position in the list."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[0, 1, 2, 3, 4, 'A', 5, 6, 7, 8, 9, 10]\n"
+     ]
+    }
+   ],
+   "source": [
+    "my_list.insert(5, 'A')\n",
+    "print(my_list)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The `insert` function puts a new element at the specified index position within the list. In the above case, we can see that `A` was added at the 6th position, as the 6th position corresponds to index 5. \n",
+    "\n",
+    "Keep in mind that an index operational is computationally more expensive than an append operation. In case of an appead, an element needs to be added to the end of the list, but in case of an insert, it could be added in between a list. If an element is added in between, then all elements to right of this element have to shifted by one position each. This makes an insert operation computationally expensive. The expense of such an operation is propotionate to the number of elements to the right of the insert index. "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Remove an element from a list\n",
+    "The opposite of an `insert` operation is the `pop` operation. The `pop` operation returns an element from the specified index, but it also removes it from the position. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Before [0, 1, 2, 3, 4, 'A', 5, 6, 7, 8, 9, 10]\n",
+      "After  [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\n",
+      "Removed element: A\n"
+     ]
+    }
+   ],
+   "source": [
+    "print('Before',my_list)\n",
+    "removed = my_list.pop(5)\n",
+    "print('After ',my_list)\n",
+    "print('Removed element:', removed)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 8,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "List 1 [0, 1, 2, 3, 4, 'A', 5, 6, 7, 8, 9, 'A']\n",
+      "List 2 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A']\n",
+      "List 3 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\n"
+     ]
+    }
+   ],
+   "source": [
+    "my_list = list(range(10))\n",
+    "my_list.insert(5, 'A')\n",
+    "my_list.append('A') # We are insert A twice into the list\n",
+    "print('List 1', my_list)\n",
+    "\n",
+    "my_list.remove('A')\n",
+    "print('List 2', my_list)\n",
+    "\n",
+    "my_list.remove('A')\n",
+    "print('List 3', my_list)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "We can remove elements from a list by value of the element. The `remove` function finds an element with the specified value and removes it form the list. It only removes the first element it finds. If we you notice in the output, then `List 2` has `A` from index 5 removed, and then on second invocation of the `remove` function the last element `A` was removed form the list. "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Remove with a negative index\n",
+    "You can also remove values from the end of a list by using a negative index. The index of the last element in the list is `-1`. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 9,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Before [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\n",
+      "After  [0, 1, 2, 3, 4, 5, 6, 7, 8]\n"
+     ]
+    }
+   ],
+   "source": [
+    "my_list = list(range(10))\n",
+    "print('Before', my_list)\n",
+    "\n",
+    "my_list.pop(-1) # will remove the last element from the list\n",
+    "print('After ', my_list)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "If we use the index as `-2` it will remove the second last element from the list as shown below."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 10,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Before [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\n",
+      "After  [0, 1, 2, 3, 4, 5, 6, 7, 9]\n"
+     ]
+    }
+   ],
+   "source": [
+    "my_list = list(range(10))\n",
+    "print('Before', my_list)\n",
+    "\n",
+    "my_list.pop(-2) # will remove the last element from the list\n",
+    "print('After ', my_list)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Alternate ways to remove\n",
+    "We can also remove elements from a list by using the `del` operation. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 11,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Before [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\n",
+      "After  [1, 2, 3, 4, 5, 6, 7, 8, 9]\n"
+     ]
+    }
+   ],
+   "source": [
+    "my_list = list(range(10))\n",
+    "print('Before', my_list)\n",
+    "\n",
+    "del my_list[0] # will remove the first element from the list\n",
+    "print('After ', my_list)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "We can use negative indexes with `del` too"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Before [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\n",
+      "After  [0, 1, 2, 3, 4, 5, 6, 7, 8]\n"
+     ]
+    }
+   ],
+   "source": [
+    "my_list = list(range(10))\n",
+    "print('Before', my_list)\n",
+    "\n",
+    "del my_list[-1] # will remove the last element from the list\n",
+    "print('After ', my_list)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "We can use `del` to also remove a range of values from within a list"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 13,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Before [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\n",
+      "After  [3, 4, 5, 6, 7, 8, 9]\n"
+     ]
+    }
+   ],
+   "source": [
+    "my_list = list(range(10))\n",
+    "print('Before', my_list)\n",
+    "\n",
+    "del my_list[:3] # Removes all elements upto index 3; excluding index 3\n",
+    "print('After ', my_list)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "By using `:3` we can actually remove all elements from the beginning of the list, upto the specified index. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 14,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Before [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\n",
+      "After  [0, 1, 2]\n"
+     ]
+    }
+   ],
+   "source": [
+    "my_list = list(range(10))\n",
+    "print('Before', my_list)\n",
+    "\n",
+    "del my_list[3:] # Removes all elements from index 3; including index 3\n",
+    "print('After ', my_list)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The above example shows how we can use `3:` to remove all elements starting from the 3rd index, including the element at the 3rd index."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 15,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Before [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\n",
+      "After  [0, 1, 2, 6, 7, 8, 9]\n"
+     ]
+    }
+   ],
+   "source": [
+    "my_list = list(range(10))\n",
+    "print('Before', my_list)\n",
+    "\n",
+    "del my_list[3:6] # Removes all elements from index 3; including index 3\n",
+    "print('After ', my_list)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "We can also specify a custom range of indexes to be removed. Specifying `3:6` causes all values from index 3 (inclusive) upto index 6 (exclusive) to be removed. "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## The step function\n",
+    "In `del` we can also specify a step function. The step removes elements by taking steps after each remove. The step value is equal to the number of elements in between that the function should skip. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 16,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Before [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\n",
+      "After  [1, 3, 5, 7, 9]\n"
+     ]
+    }
+   ],
+   "source": [
+    "my_list = list(range(10))\n",
+    "print('Before', my_list)\n",
+    "\n",
+    "del my_list[0:10:2] # Removes alternate elements, starting from index 0 upto index 10\n",
+    "print('After ', my_list)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "In `0:10:2` the `0` is the starting index, `10` is the ending index, and `2` means add index by 2 before doing the next remove. So when we use the value of `2` we are specifying that every alternate element should be removed. \n",
+    "\n",
+    "The above operation of `0:10:2` effectively cause the number `0` and all even numbers to be removed from the list. The remaining final list only contains odd numbers. \n",
+    "\n",
+    "We can also write the above operation as `::2` with the same effect."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 17,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Before [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\n",
+      "After  [1, 3, 5, 7, 9]\n"
+     ]
+    }
+   ],
+   "source": [
+    "my_list = list(range(10))\n",
+    "print('Before', my_list)\n",
+    "\n",
+    "del my_list[::2] # Removes alternate elements throughout the list\n",
+    "print('After ', my_list)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Remove multiple items meeting a condition\n",
+    "We can also perform conditional removes on the list. The below program removes all the odd numbers from within a list, and forms a new list by doing so."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 18,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "List 1 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\n",
+      "List 2 [0, 2, 4, 6, 8]\n"
+     ]
+    }
+   ],
+   "source": [
+    "list1 = list(range(10))\n",
+    "\n",
+    "list2 = [i for i in list1 if i % 2 == 0]\n",
+    "\n",
+    "print('List 1', list1)\n",
+    "print('List 2', list2)\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The statement \n",
+    "\n",
+    "`i for i in list1 if i % 2 == 0`\n",
+    "\n",
+    "iterated through the whole list and create a new list, by keeping only those values that matched the if condition. The if condition is specified by\n",
+    "\n",
+    "`if i % 2 == 0`\n",
+    "\n",
+    "which causes only even numbers to be kept and all other items in the list should be ignored. \n",
+    "\n",
+    "The `if` statement can be complext with multiple conditions to check for, thereby allowing complex remove opertions to be executed in a single line of code. \n",
+    "\n",
+    "Let's look at an example of doing this on an list of Strings"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 19,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Full list: ['Bob', 'Mike', 'Alice', 'Harvey', 'Sam']\n",
+      "Names ending in e: ['Mike', 'Alice']\n"
+     ]
+    }
+   ],
+   "source": [
+    "my_list = ['Bob', 'Mike', 'Alice', 'Harvey', 'Sam']\n",
+    "\n",
+    "ending_in_e = [s for s in my_list if s.endswith('e')]\n",
+    "\n",
+    "print('Full list:', my_list)\n",
+    "print('Names ending in e:', ending_in_e)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Searching for an element\n",
+    "We can use the `in` keyword to search for an element within a list."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 20,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "True"
+      ]
+     },
+     "execution_count": 20,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "my_list = ['Apple', 'Orange', 'Mango']\n",
+    "\n",
+    "'Orange' in my_list"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The above statement outputs `True` as `Orange` is present as an element within the list. The statement can also be written by assigning the value to a variable, or including it within an `if` statement"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 21,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Found Orange: True\n",
+      "Found Orange\n"
+     ]
+    }
+   ],
+   "source": [
+    "found = 'Orange' in my_list\n",
+    "print('Found Orange:', found)\n",
+    "\n",
+    "if 'Orange' in my_list:\n",
+    "    print('Found Orange')"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "We can also do the reverse to confirm that an element is not present within a list. This can be done by using the `not in` keyword as shown below."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 22,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Pineapple not in list: True\n",
+      "Orange not in list: False\n"
+     ]
+    }
+   ],
+   "source": [
+    "pineapple = 'Pineapple' not in my_list\n",
+    "orange = 'Orange' not in my_list\n",
+    "\n",
+    "print('Pineapple not in list:', pineapple)\n",
+    "print('Orange not in list:', orange)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Concatenating lists\n",
+    "We can take 2 or more lists and then combine them by adding one in front of the other. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 23,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "List 1 [0, 1, 2, 3, 4]\n",
+      "List 2 [5, 6, 7, 8, 9]\n",
+      "List 3 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\n"
+     ]
+    }
+   ],
+   "source": [
+    "list1 = list(range(5))\n",
+    "list2 = list(range(5, 10))\n",
+    "\n",
+    "list3 = list1 + list2 #creates a new list by concatenating both the lists\n",
+    "\n",
+    "print('List 1', list1)\n",
+    "print('List 2', list2)\n",
+    "print('List 3', list3)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Using `list1 + list2` creates a new list by concatenating two lists. We can see that `list3` is a combined list where `list2` is appended onto `list1`. \n",
+    "\n",
+    "We can also use a function called `extend` available on a list"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 24,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Before [0, 1, 2, 3, 4]\n",
+      "After  [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\n"
+     ]
+    }
+   ],
+   "source": [
+    "my_list = list(range(5))\n",
+    "print('Before', my_list)\n",
+    "\n",
+    "my_list.extend(list(range(5, 10))) #modifies the same list by appending values to it\n",
+    "print('After ', my_list)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "We can use the concatenation on lists of any types. Lists can be hetrogeneous and hetrogenous lists can also be concatented."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 25,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[1, 2, 'Hello', 'World', 3, (4, 5)]\n"
+     ]
+    }
+   ],
+   "source": [
+    "list1 = [1, 2, 'Hello']\n",
+    "list2 = ['World', 3, (4,5)]\n",
+    "\n",
+    "print(list1 + list2)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "In the above example `(4,5)` is a tuple within the list. "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Sorting elements in a list\n",
+    "Because lists are mutable, we also have functions to sort the elements within a list. There is a built-in `sort` function that does a simple numerical sort. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 26,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Before [5, 2, 8, 5, 4, 0]\n",
+      "After  [0, 2, 4, 5, 5, 8]\n"
+     ]
+    }
+   ],
+   "source": [
+    "my_list = [5,2,8,5,4,0]\n",
+    "print('Before', my_list)\n",
+    "\n",
+    "my_list.sort()\n",
+    "print('After ', my_list)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The sort function performs and in-place sort of the list. The original list is modified to now have a sorted list. \n",
+    "\n",
+    "Sorting not only works on numbers, but on strings to. A string sort is essentially a sort of the ASCII character code of the characters, or in simpler terms it is an alphabetical sorting. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 27,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Before ['B', 'A', 'D', 'F', 'C', 'E']\n",
+      "After  ['A', 'B', 'C', 'D', 'E', 'F']\n"
+     ]
+    }
+   ],
+   "source": [
+    "my_list = ['B','A','D','F','C','E']\n",
+    "print('Before', my_list)\n",
+    "\n",
+    "my_list.sort()\n",
+    "print('After ', my_list)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The sort function also tasks optional paramters as input. These parameters, allow us to perform complex sort opertions. The operation is specified by a sort key. \n",
+    "\n",
+    "If we were to sort the list as per the lenght of the words in the list, the same could be done using the `len` sort key."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 28,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Before ['One', 'Three', 'Four', 'Five', 'Thirteen', 'Two']\n",
+      "After  ['One', 'Two', 'Four', 'Five', 'Three', 'Thirteen']\n"
+     ]
+    }
+   ],
+   "source": [
+    "my_list = ['One', 'Three', 'Four', 'Five', 'Thirteen', 'Two',]\n",
+    "print('Before', my_list)\n",
+    "\n",
+    "my_list.sort(key=len)\n",
+    "print('After ', my_list)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Slicing lists\n",
+    "We can also slice a list to extra a sub-list from a given list. Below is an example of how slicing can be done. Slicing generally requires us to specify a start and stop index in the form of `start:stop`"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 29,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Original [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\n",
+      "Sliced   [2, 3]\n"
+     ]
+    }
+   ],
+   "source": [
+    "my_list = list(range(10))\n",
+    "\n",
+    "sliced = my_list[2:4]\n",
+    "\n",
+    "print('Original', my_list)\n",
+    "print('Sliced  ', sliced)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Using `2:4` will slice the list starting from index 2 (inclusive), upto index 4 (exclusive).\n",
+    "\n",
+    "We can also partially specify the slice index. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 30,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[0, 1, 2, 3, 4]\n"
+     ]
+    }
+   ],
+   "source": [
+    "sliced = my_list[:5]\n",
+    "print(sliced)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Slices the list from index 0 (inclusive) upto index 5 (exclusive).\n",
+    "\n",
+    "The reverse works too"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 31,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[5, 6, 7, 8, 9]\n"
+     ]
+    }
+   ],
+   "source": [
+    "sliced = my_list[5:]\n",
+    "print(sliced)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Using `5:` slices the list starting from index 5 upto the end of the list. Keep in mind that the original list is not modified by the slice operation, but a new list is created. \n",
+    "\n",
+    "Slicing also supports a step specification. By default the step is `1`, but we can explicitely specify a step."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 32,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[0, 2, 4, 6, 8]\n"
+     ]
+    }
+   ],
+   "source": [
+    "sliced = my_list[::2]\n",
+    "print(sliced)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Using `::2` gets us all alternate elements from the list. For the list that we had, this was effective to extracting all the even numbers. Keep in mind that index 0 was included in the next list, and from there on every alternate index was included. "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "***\n",
+    "Copyright (c) 2020, BlobCity, Inc."
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.8.4"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 4
+}
