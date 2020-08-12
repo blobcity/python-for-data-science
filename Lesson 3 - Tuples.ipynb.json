@@ -1,0 +1,578 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "[<img src=\"http://cloud.blobcity.net/assets/images/badge.png\" height=\"25\" style=\"margin-bottom:-15px\" />](https://cloud.blobcity.com/#/ps/shared-cloudbook/66c4fcaa-b0e4-4e0a-b275-49cdf007667a)\n",
+    "\n",
+    "# Tuple\n",
+    "\n",
+    "A tuple is a sequence of Python objects. It is immutable, which means it cannot be changed once created. It can hold objects of any type, including holding other tuples. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "(1, 2, 3)\n"
+     ]
+    }
+   ],
+   "source": [
+    "tup = 1,2,3  # Defines a tuple with 3 values\n",
+    "\n",
+    "print(tup)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "(1, 2, 3)\n"
+     ]
+    }
+   ],
+   "source": [
+    "tup = (1,2,3) # Can also be defined this way. Sometimes offers better readability\n",
+    "\n",
+    "print(tup)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "((1, 2, 3), (4, 5))\n"
+     ]
+    }
+   ],
+   "source": [
+    "tup_nested = (1,2,3),(4,5) #This is a nested tuple\n",
+    "\n",
+    "print(tup_nested)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The above example shows how one tuple can be included in another tuple. This is perfectly normal in Python as a tuple can store an object of any type, including an object of type tuple itself. \n",
+    "\n",
+    "One can also convert any sequence into a tuple."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "(1, 2, 3)\n"
+     ]
+    }
+   ],
+   "source": [
+    "tup = tuple([1,2,3])\n",
+    "\n",
+    "print(tup)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The above example shows converting an array in a tuple. \n",
+    "\n",
+    "A string in general is also a sequence of characters. It can be converted into a tuple too, just as any other sequence. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "('h', 'e', 'l', 'l', 'o')\n"
+     ]
+    }
+   ],
+   "source": [
+    "tup = tuple('hello')\n",
+    "\n",
+    "print(tup)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "How do you access elements of a Tuple? We do it just like any other sequence type."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "'h'"
+      ]
+     },
+     "execution_count": 6,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "tup[0]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Indexes in Python start from `0` like most other programming languages. So `tup[0]` gets us the first element in tuple. \n",
+    "\n",
+    "A tuple does not necessarily have to be homogeneous. It can be hetrogeneous in nature. This means it can store objects of different types."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "('hello', [1, 2, 3], (4, 5, 6), True)\n"
+     ]
+    }
+   ],
+   "source": [
+    "tup = 'hello', [1,2,3], (4,5,6), True\n",
+    "\n",
+    "print(tup)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 8,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "('hello', [1, 2, 3], (4, 5, 6), True)\n"
+     ]
+    }
+   ],
+   "source": [
+    "tup = tuple(['hello', [1,2,3], (4,5,6), True]) #Also written as this\n",
+    "\n",
+    "print(tup)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "A tuple itself is immutable, but if an object inside a tuple is mutable, it can be done so by directly mutating the object in-place. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 9,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "('hello', [1, 2, 3, 4], (4, 5, 6), True)\n"
+     ]
+    }
+   ],
+   "source": [
+    "tup[1].append(4)\n",
+    "\n",
+    "print(tup)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "However, `tup[2].append(4)` would now work, as at index 2 we have a tuple. Index 1 was an array / list so the append operation worked. "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Concatenating Tuples\n",
+    "\n",
+    "While tuples by themselves are immutable, we can concatenate two different tuples to make longer tuples."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 10,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "(1, 2, 3, 4, 5, 6)\n"
+     ]
+    }
+   ],
+   "source": [
+    "tup1 = 1,2,3\n",
+    "tup2 = 4,5,6\n",
+    "\n",
+    "tup3 = tup1 + tup2\n",
+    "\n",
+    "print(tup3)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "By using just the `+` operator, you can concatenate tuples to create a longer tuple.\n",
+    "\n",
+    "## Multiplying Tuples\n",
+    "\n",
+    "One can multiple the tuple to create a large tuple. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 11,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "(1, 2, 1, 2, 1, 2, 1, 2)\n"
+     ]
+    }
+   ],
+   "source": [
+    "tup = 1,2\n",
+    "tup = tup * 4\n",
+    "\n",
+    "print(tup)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "We can see that multiplying the tuple by 4, we have caused the tuple to expand itself into 4 times its original size. All values inside the tuple get replicated 4 times with this operation.\n",
+    "\n",
+    "## Unpacking Tuples\n",
+    "In a single line of code, we can extract all the values present within the tuple. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "1\n",
+      "2\n",
+      "3\n"
+     ]
+    }
+   ],
+   "source": [
+    "tup = 1,2,3\n",
+    "\n",
+    "a,b,c = tup #Unpacks the Tuple\n",
+    "\n",
+    "print(a)\n",
+    "print(b)\n",
+    "print(c)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Unpacking hetrogeneous tuples is also possible. The variables have to be provided in the approrpiate manner, else the operation will fail."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 13,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "4\n",
+      "5\n"
+     ]
+    }
+   ],
+   "source": [
+    "tup = 1,2,3,(4,5)\n",
+    "\n",
+    "a,b,c,(d,e) = tup\n",
+    "\n",
+    "print(d)\n",
+    "print(e)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Since we had a tuple inside the tuple, we put `(d,e)` within the round brackets. Python would not be able to extract the value of 4 & 5 without this syntax. Let's try another way just to be clear."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 14,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "(4, 5)\n"
+     ]
+    }
+   ],
+   "source": [
+    "tup = 1,2,3,(4,5)\n",
+    "\n",
+    "a,b,c,x = tup\n",
+    "\n",
+    "print(x)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The above example extracts the inner tuple and set it to the varaible `x`. It is important to note that it did not extract the value of `4` and set it to `x`. It instead extracted the entire tuple `(4,5)`\n",
+    "\n",
+    "The unpacking of tuples works within for loops as well. It is a common practice to unpack when iterating over sequences in a for loop."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 15,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "1 , 2\n",
+      "3 , 4\n",
+      "5 , 6\n"
+     ]
+    }
+   ],
+   "source": [
+    "array = [(1,2), (3,4), (5,6)]\n",
+    "for a, b in array:\n",
+    "    print(a, ',', b)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "If we have an array or a sequence of tuples, and we want to iterate through it by extracting the individual elements of the tuple, the above code allows just that. \n",
+    "\n",
+    "In your journey with Python, you might encounter such complex extraction patterns. It is important to fully understand and practice these. "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Pluck a few elements\n",
+    "\n",
+    "Some of the most recent additions in Python, allow for plucking out a few values from the beginning of the tuple. The below example shows just how it is done. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 16,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "1\n",
+      "2\n",
+      "[3, 4, 5]\n"
+     ]
+    }
+   ],
+   "source": [
+    "tup = 1,2,3,4,5\n",
+    "\n",
+    "a, b, *others = tup\n",
+    "\n",
+    "print(a)\n",
+    "print(b)\n",
+    "print(others)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "If we don't care about `others`, then we can also use an `_` to ignore the trailing values"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 17,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "1\n",
+      "2\n"
+     ]
+    }
+   ],
+   "source": [
+    "a, b, *_ = tup\n",
+    "\n",
+    "print(a)\n",
+    "print(b)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Methods on the tuple object\n",
+    "\n",
+    "The tuple object offers some built-in methods for quick operations. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 18,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "3\n"
+     ]
+    }
+   ],
+   "source": [
+    "tup = 1,2,1,1,3\n",
+    "\n",
+    "print(tup.count(1))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The count method counts the number of times a specific element occurs within a tuple. Since the tuple is immutable, a count operation on a tuple is generally faster than the count operation on a list / array.\n",
+    "\n",
+    "The tuple provides a second method called `index`. Unlike `count`, the `index` method gets the first index of occurances of the specified value. We can see this in the below example."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 19,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "First index of 1: 0\n",
+      "First index of 2: 1\n",
+      "First index of 3: 4\n"
+     ]
+    }
+   ],
+   "source": [
+    "print('First index of 1:', tup.index(1))\n",
+    "print('First index of 2:', tup.index(2))\n",
+    "print('First index of 3:', tup.index(3))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "***\n",
+    "Copyright (c) 2020, BlobCity, Inc."
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.8.4"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 4
+}
