@@ -7,6 +7,7 @@ BlobCity is a big supporter of Open Source technologies. We have presence in USA
 [https://blobcity.com](https://blobcity.com)
 
 # Products
-[BlobCity AI Cloud](htts://cloud.blobcity.com): Provides hosted Jupyter Notebooks on the Cloud, backed by Unlimited Compute, RAM, Stroage & GPU to handle the most presseing of our A.I. problems.
+
+[BlobCity A.I. Cloud](https://cloud.blobcity.com): Provides hosted Jupyter Notebooks on the Cloud, backed by Unlimited Compute, RAM, Stroage & GPU to handle the most presseing of our A.I. problems.
 
 [BlobCity DB](https://docs.blobcity.com): An open-source NoSQL Database which is blazing fast, HTAP enabled and natively stores 17 formats of data for handling your most diverse datasets. 
