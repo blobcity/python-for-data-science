@@ -1,0 +1,924 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Language Semantics\n",
+    "\n",
+    "Python is different from many commonly used programming languages. Several languages use braces to identify blocks of code. However Python uses whitespaces to logically arrange blocks of code. These whitespaces could be tabs or spaces. \n",
+    "\n",
+    "Let's take an example of a `for` loop from Java.\n",
+    "\n",
+    "```java\n",
+    "for (int val : my_array) {\n",
+    "    System.out.println(x)\n",
+    "}\n",
+    "```\n",
+    "\n",
+    "What we see is, the code inside the `for` loop is placed within the `{}`. However, something like this will not work in Python. \n",
+    "\n",
+    "Below is a for loop defined in Python. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "1\n",
+      "2\n",
+      "3\n"
+     ]
+    }
+   ],
+   "source": [
+    "my_array = [1,2,3]\n",
+    "\n",
+    "for x in my_array:\n",
+    "    print(x)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "In Python, a `:` denotes the start of an indented code. This is similar to the `{` from several other languages. So when does the for loop stop here? Let's consider the below example. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "A -> 1\n",
+      "B -> 1\n",
+      "A -> 2\n",
+      "B -> 2\n",
+      "A -> 3\n",
+      "B -> 3\n"
+     ]
+    }
+   ],
+   "source": [
+    "for x in my_array:\n",
+    "    print('A -> ' + str(x))\n",
+    "    print('B -> ' + str(x))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "We can see that both the print statements executed for each iteration of the `for` loop. This indicates that the `for` loop has not ended yet. So when does the `for` loop end? It will end when we remove the indentation, or do a reverse indentation.\n",
+    "\n",
+    "Let's consider the below example."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "A -> 1\n",
+      "B -> 1\n",
+      "A -> 2\n",
+      "B -> 2\n",
+      "A -> 3\n",
+      "B -> 3\n",
+      "Hello\n"
+     ]
+    }
+   ],
+   "source": [
+    "for x in my_array:\n",
+    "    print('A -> ' + str(x))\n",
+    "    print('B -> ' + str(x))\n",
+    "print('Hello')"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "You can see that `Hello` got printed only once. This indicates that `print('Hello')` is not part of the `for` loop. As we can see, `print('Hello')` is not indented as the two print statements before it. Closing the indentation, closes the logical block started with the `:` of the `for` loop.\n",
+    "\n",
+    "You can also choose to include comments within the indentation. Here is an example. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "A -> 1\n",
+      "B -> 1\n",
+      "A -> 2\n",
+      "B -> 2\n",
+      "A -> 3\n",
+      "B -> 3\n",
+      "Hello\n"
+     ]
+    }
+   ],
+   "source": [
+    "for x in my_array:\n",
+    "    # This comment is placed inside the for loop\n",
+    "    print('A -> ' + str(x))\n",
+    "    print('B -> ' + str(x))\n",
+    "    # Here is another comment within the for loop\n",
+    "print('Hello')\n",
+    "# This comment is outside the for loop"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "A comment can also follow a line"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Hello\n"
+     ]
+    }
+   ],
+   "source": [
+    "print('Hello') # This line prints Hello"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Let's look at an interesting example below. Are the comments really inside the for loop, or they are just lines of code that are completely ignored by the interpretter?"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "1\n",
+      "2\n",
+      "2\n",
+      "4\n",
+      "3\n",
+      "6\n"
+     ]
+    }
+   ],
+   "source": [
+    "for x in my_array:\n",
+    "    # Prints x\n",
+    "    print(x)\n",
+    "    # Prints x * 2\n",
+    "    print(x * 2)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Interestingly, you can see that the comment `# Prints x * 2` did not actually break the `for` loop. Both print statements got included within the for loop. \n",
+    "\n",
+    "It is important to note that it requires an actual line of code that is not indented to break an indentation. A comment won't break an indentation. \n",
+    "\n",
+    "For better code readability, it is highly recommended that you appropriately indent your comments. Any comments that don't follow the indentation of the block of the code they are placed in, can make the code less readable and confusing. \n",
+    "\n",
+    "## No Semicolons\n",
+    "\n",
+    "As you would have noticed by now, Python statements do not need to be terminated with a semicolon. However you may do so without a problem. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Hello\n",
+      "Hello\n"
+     ]
+    }
+   ],
+   "source": [
+    "print('Hello');\n",
+    "print('Hello')"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Whether you use a semicolon or not, it is one and the same thing. It is a common practic in Python to not terminate a line with a semicolon. Thereby `print('Hello')` without the semicolon would be the appropriate syntax. \n",
+    "\n",
+    "There are certain occassions where a semicolon is necessary. If you want to write 2 lines of code on the same line, then you can do so by separating these lines using a semicolon. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 8,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Hello\n",
+      "World\n"
+     ]
+    }
+   ],
+   "source": [
+    "print('Hello'); print('World')"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The `;` instructs the interpretter that you are closing the first line and starting a new line of code. The above code without the `;` would have given an error."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## If Statements\n",
+    "\n",
+    "Conditional statements in Python are simple and very similar to other languages. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 9,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "The random number is less than 5\n"
+     ]
+    }
+   ],
+   "source": [
+    "import random\n",
+    "a = random.randint(0, 10)\n",
+    "\n",
+    "if a < 5:\n",
+    "    print('The random number is less than 5')"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The above statement is a simple `if` statement in Python. The `:` denotes the start of the `if` block, and the block continues until the indentation is broken.\n",
+    "\n",
+    "Some interesting points to note is that Python does not require the condition of the if statement to be included within round braces `()`. The same code written in Java language would read\n",
+    "\n",
+    "```java\n",
+    "if (a < 5) {\n",
+    "    System.out.println(\"The random number is less than 5\");\n",
+    "}\n",
+    "```\n",
+    "\n",
+    "In Python you don't write `if (a < 5):`, but you simply write `if a < 5:`. The round brackets are ignored. To mention again, the `:` at the end of the line is equivalent to the `{` in Java."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 10,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "The random number is less than 5\n"
+     ]
+    }
+   ],
+   "source": [
+    "a = random.randint(0, 10)\n",
+    "\n",
+    "if a < 5:\n",
+    "    print('The random number is less than 5')\n",
+    "else:\n",
+    "    print('The random number is greater than or equal to 5')"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Let's look at an example of an `else if` clause"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 11,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "The random number is less than 5\n"
+     ]
+    }
+   ],
+   "source": [
+    "a = random.randint(0, 10)\n",
+    "\n",
+    "if a < 5:\n",
+    "    print('The random number is less than 5')\n",
+    "elif a == 5:\n",
+    "    print('The number is equal to 5')\n",
+    "else:\n",
+    "    print('The random number is greater than 5')"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "As you can see, Python uses the convention of `elif` for an else if statement. Some other language you are most likely familiar with, probably uses the `else if` nomenclature.\n",
+    "\n",
+    "As you might have guessed, if statements can have multiple conditions. Let's quickly look at an example. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "This is an odd number or a number greater than or equal to 10\n"
+     ]
+    }
+   ],
+   "source": [
+    "if a < 10 and a % 2 == 0:\n",
+    "    print('This is an even number less than 10')\n",
+    "else:\n",
+    "    print('This is an odd number or a number greater than or equal to 10')"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Interestingly, Python does not use the commonly used `&&` convention. Instead it uses `and` to define an AND clause within the if statement. Similarly `or` is used in place of the commonly used `||`"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 13,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "This is a number that is even or less than 10\n"
+     ]
+    }
+   ],
+   "source": [
+    "if a < 10 or a % 2 == 0:\n",
+    "    print('This is a number that is even or less than 10')\n",
+    "else:\n",
+    "    print('This is an odd number that is greater than 10')"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Nested if Statements"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 14,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Greater than 50\n",
+      "Also greater than 100\n"
+     ]
+    }
+   ],
+   "source": [
+    "a = random.randint(0, 200)\n",
+    "\n",
+    "if a > 50:\n",
+    "    print('Greater than 50')\n",
+    "    if a > 100:\n",
+    "        print('Also greater than 100')\n",
+    "    else:\n",
+    "        print('Not greater than 100')\n",
+    "else:\n",
+    "    print('Less than or equal to 50')"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "As you can see, just like any other language, we can nest if statements within each other. This is true for nesting any code within the if. You can do as many levels of nesting as you desire; there are no restrictions. \n",
+    "\n",
+    "However, in Python is a common practice to split programs into small logical functions. Too much nesting can make the code hard to read. While nesting is permitted, it is recommended to keep nesting to as little as possible. Typically more than 2 levels of nesting, specially more than 5 lines of code per indent, can make the code significantly more difficult to read."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### The pass Statement\n",
+    "\n",
+    "If you wanted to write an empty `if` statement, how would you do this? But first, why would you do this? There are occassions in which you want certain escape `if` conditions. Which means, if the condition is satisfied, you simply ignore the specific condition and move on to possibly another block of code. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 15,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Letter : o\n",
+      "Letter : o\n",
+      "Letter : l\n",
+      "Letter : e\n"
+     ]
+    }
+   ],
+   "source": [
+    "for letter in 'google': \n",
+    "   if letter == 'g':\n",
+    "    pass #TODO: Implement this later\n",
+    "   else:\n",
+    "    print('Letter :', letter)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Areas where you would need to syntatically have a statement, but don't want to do anything, you would use the `pass` statement. The `pass` statement is not specific to `if`, but is commonly used with several control structures, functions and loops."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Loops\n",
+    "\n",
+    "One of the most commonly used structures in Python is loops. We have used some of these already. Let's take a quick detailed look into how loops work in Python.\n",
+    "\n",
+    "Like other languages, Python supports both `while` and `for` loops. All loops can be nested within other loops. \n",
+    "\n",
+    "Python also supports the popular loop control statements, which are:\n",
+    "* break statement\n",
+    "* continue statement\n",
+    "* pass statement\n",
+    "\n",
+    "Let's start with `while` loops\n",
+    "\n",
+    "## while loop"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 16,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Count is 0\n",
+      "Count is 1\n",
+      "Count is 2\n",
+      "Count is 3\n",
+      "Count is 4\n",
+      "Count is 5\n",
+      "Count is 6\n",
+      "Count is 7\n",
+      "Count is 8\n",
+      "Count is 9\n"
+     ]
+    }
+   ],
+   "source": [
+    "count = 0\n",
+    "while count < 10:\n",
+    "    print('Count is', count)\n",
+    "    count += 1"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The while loop is similar to how it works in most other programming langauges. This syntax should be familar to most. One can write any number of lines within the `while` loop, as long as the indentation is retained.\n",
+    "\n",
+    "We can also nest a `while` loop within another `while` loop."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 17,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "count1 = 0 and count2 = 0\n",
+      "count1 = 0 and count2 = 1\n",
+      "count1 = 1 and count2 = 0\n",
+      "count1 = 1 and count2 = 1\n",
+      "count1 = 2 and count2 = 0\n",
+      "count1 = 2 and count2 = 1\n",
+      "count1 = 3 and count2 = 0\n",
+      "count1 = 3 and count2 = 1\n",
+      "count1 = 4 and count2 = 0\n",
+      "count1 = 4 and count2 = 1\n"
+     ]
+    }
+   ],
+   "source": [
+    "count1 = 0\n",
+    "while count1 < 5:\n",
+    "    count2 = 0\n",
+    "    while count2 < 2:\n",
+    "        print('count1 =', count1, 'and count2 =', count2)\n",
+    "        count2 += 1\n",
+    "    count1 += 1"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### while with else\n",
+    "\n",
+    "Unlike many other languages, `while` loops inside Python can have an `else` clause. The `else` is a code block that is executed when the condition of the `while` loop is no longer satisfied. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 18,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Number is still less than 5\n",
+      "Number is still less than 5\n",
+      "Number is still less than 5\n",
+      "Number is still less than 5\n",
+      "Number is still less than 5\n",
+      "Number is no longer less than 5\n"
+     ]
+    }
+   ],
+   "source": [
+    "number = 0\n",
+    "while number < 5:\n",
+    "    print('Number is still less than 5')\n",
+    "    number += 1\n",
+    "else:\n",
+    "    print('Number is no longer less than 5')"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "We need to take a pause here to truly understand the difference between while with else and while with just some lines of code after it. The below example would do exactly the same thing as the above example, yet there is a fundamental difference that we need to understand."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 19,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Number is still less than 5\n",
+      "Number is still less than 5\n",
+      "Number is still less than 5\n",
+      "Number is still less than 5\n",
+      "Number is still less than 5\n",
+      "Number is no longer less than 5\n"
+     ]
+    }
+   ],
+   "source": [
+    "number = 0\n",
+    "while number < 5:\n",
+    "    print('Number is still less than 5')\n",
+    "    number += 1\n",
+    "print('Number is no longer less than 5')"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "If you have run the above cells, you know that both the `while` with the `else` and `while` without the `else`, both produce exactly the same output. So why do we have a `while` with `else` as an option?\n",
+    "\n",
+    "The answer to this is very simple, but let's first understand one more important thing. Will the `else` statement execute if the `while` condition is never satisifed? Let's take a look at the below code. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 20,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Number is no longer less than 5\n"
+     ]
+    }
+   ],
+   "source": [
+    "number = 5\n",
+    "while number < 5:\n",
+    "    print('Number is still less than 5')\n",
+    "    number += 1\n",
+    "else:\n",
+    "    print('Number is no longer less than 5')"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "When we run it, we can notice that the else block is printed. So whether the condition of the `while` loop is ever satisified or not, the `else` is getting printed. So when exactly is the `else` useful? "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 21,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Number is 0\n",
+      "Number is 1\n",
+      "Number is 2\n",
+      "Number is 3\n",
+      "We have completed the while\n"
+     ]
+    }
+   ],
+   "source": [
+    "number = 0\n",
+    "while number < 5:\n",
+    "    print('Number is', number)\n",
+    "    number += 1\n",
+    "    if number == 4: break\n",
+    "else:\n",
+    "    print('Number is no longer less than 5')\n",
+    "    \n",
+    "print('We have completed the while')"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Hmm.. interesting.. is it not?\n",
+    "\n",
+    "WE can notice that the `else` block never got executed as we did a `break` on the `while` loop before the condition failed. This means that the `else` block only executes as long as we did not `break` the while loop.\n",
+    "\n",
+    "This is a veryful useful language construct in Python. If it was not for the `else`, you would have the write the code in the following manner."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 22,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Number is 0\n",
+      "Number is 1\n",
+      "Number is 2\n",
+      "Number is 3\n",
+      "We have completed the while\n"
+     ]
+    }
+   ],
+   "source": [
+    "number = 0\n",
+    "didBreak = False\n",
+    "while number < 5:\n",
+    "    print('Number is', number)\n",
+    "    number += 1\n",
+    "    if number == 4: didBreak = True; break\n",
+    "\n",
+    "if not didBreak:\n",
+    "    print('Number is no longer less than 5')\n",
+    "    \n",
+    "print('We have completed the while')"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "We can clearly see that the `while` with the `else` achieved the same objective as the above code, but with much lesser lines of code. So there are certain uses for `else` following the `while`. For many this might involve re-thinking `while` loops, but for Python it is worth it. The `while` with the `else` is something you are going to use more commonly than you think you will. "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## for loop\n",
+    "\n",
+    "`for` loops in Python follow more of the functional programming syntax. We define a variable inside the `for` and then choose an object to iterate upon. The `for` will execute, until the object specified is fully iterated through. Let's look at an example."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 23,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Fruit is apple\n",
+      "Fruit is orange\n",
+      "Fruit is mango\n"
+     ]
+    }
+   ],
+   "source": [
+    "fruits = ['apple', 'orange', 'mango']\n",
+    "\n",
+    "for fruit in fruits:\n",
+    "    print('Fruit is', fruit)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "In the above example, `fruits` is an array and we have utilised a `for` loop to iterate through every element of the array.\n",
+    "\n",
+    "In case you prefer to iterate on index, you can do so as well"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 24,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Fruit is apple\n",
+      "Fruit is orange\n",
+      "Fruit is mango\n"
+     ]
+    }
+   ],
+   "source": [
+    "for index in range(len(fruits)):\n",
+    "   print('Fruit is', fruits[index])"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The range function returns an evenly separated list of integers, starting from 0 upto to the value specified. The integers will be ordered. This function is commonly used in places where index based iterations are necessary. \n",
+    "\n",
+    "The above `for` loop is similar to the following `for` loop you have most likely seen in other languages.\n",
+    "\n",
+    "```java\n",
+    "for (int i = 0; i < fruits.length(); i++) {\n",
+    "    // do whatever\n",
+    "}\n",
+    "```"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### for with else"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 25,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Fruit is apple\n",
+      "Fruit is orange\n",
+      "Fruit is mango\n",
+      "Finished printing fruits\n"
+     ]
+    }
+   ],
+   "source": [
+    "for fruit in fruits:\n",
+    "    print('Fruit is', fruit)\n",
+    "else:\n",
+    "    print('Finished printing fruits')"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "***\n",
+    "Copyright (c) 2020, BlobCity, Inc."
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.8.4"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 4
+}
