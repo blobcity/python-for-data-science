@@ -1,0 +1,284 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "[<img src=\"http://cloud.blobcity.net/assets/images/badge.png\" height=\"20\" style=\"margin-bottom:-15px\" />](https://cloud.blobcity.com/#/ps/shared-cloudbook/66c4fcaa-b0e4-4e0a-b275-49cdf007667a)\n",
+    "\n",
+    "# Sequence Functions\n",
+    "\n",
+    "Python offers several sequence functions. These are useful and commonly used for several data operations. We will take a look at few of these that are most commonly used.\n",
+    "\n",
+    "## Enumerate\n",
+    "We often require to interate over collection classes and also have the current index of the interaction. We usually have to do this by initialising a new variable, commonly called `i`, and then keeping track of it by manually incrementing it with every logical iteration. \n",
+    "\n",
+    "This requirement is so common, that almost every developer defines and manages this `i`; and possibly does so several times everyday. \n",
+    "\n",
+    "Python has created a built-in enumerate function, that creates tuples of `i` and the corresponding sequence value. This help create an automatic track of the iteration index `i`. Here is an example."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "0 -> A\n",
+      "1 -> B\n",
+      "2 -> C\n",
+      "3 -> D\n",
+      "4 -> E\n"
+     ]
+    }
+   ],
+   "source": [
+    "my_list = ['A', 'B', 'C', 'D', 'E']\n",
+    "for i, item in enumerate(my_list):\n",
+    "    print(i, '->', item)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "As we can see, the `enumerate` function returns a combination of `i` and `item`. This combination is actually a Tuple of the form `(i, item)`\n",
+    "\n",
+    "## Sorted\n",
+    "\n",
+    "Python provides a built-in function to sort elements of any sequence. If a list is provided, the contents of the list are sorted. However the sorted function can be used to sort strings as well. Here is an example"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[0, 2, 4, 5, 6, 8, 9]"
+      ]
+     },
+     "execution_count": 2,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sorted([6,2,8,0,4,5,9])"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Let's look at an example use of sorted with a string"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'a', 'b', 'c', 'd', 'e', 'e', 'e', 'f', 'g', 'h', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'o', 'o', 'o', 'p', 'q', 'r', 'r', 's', 't', 't', 'u', 'u', 'v', 'w', 'x', 'y', 'z']\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(sorted('the quick brown fox jumps over the lazy dog'))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "We can see that the `sorted` function performed a sort on all characters of the string. The spaces get aligned first, followed by all the individual alphabets in a sorted manner. \n",
+    "\n",
+    "The `print` is used for better formatting of the output array. However, the sort logic does work without the `print` and is completely unreleated to the usage of the `print` function.\n",
+    "\n",
+    "## Zip\n",
+    "\n",
+    "The zip statement is used to combine two or more sequences to form a combined sequence of tuples. Let's look at an example to understand this best. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[('Lion', 'Animal'), ('Apple', 'Fruit'), ('Rose', 'Flower')]\n"
+     ]
+    }
+   ],
+   "source": [
+    "items = ['Lion', 'Apple', 'Rose']\n",
+    "categories = ['Animal', 'Fruit', 'Flower']\n",
+    "\n",
+    "zipped = zip(items, categories)\n",
+    "\n",
+    "print(list(zipped))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Interestingly, the `zip` function combined the two lists to form a collection of tuples. `('Lion', 'Animal')` is of type Tuple. But what is the type of the variable `zipped`. Let's find out. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "?zipped"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The variable `zipped` is of type `zip` itself. `zip` is an in-built implementation available in Python. A `zip` type can be converted into a `list` as shown in the above example. \n",
+    "\n",
+    "The `zip` operation works to combine more than one sequence as well."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[('Lion', 'Animal', 'Dangerous'), ('Apple', 'Fruit', 'Healthy'), ('Rose', 'Flower', 'Red')]\n"
+     ]
+    }
+   ],
+   "source": [
+    "items = ['Lion', 'Apple', 'Rose']\n",
+    "categories = ['Animal', 'Fruit', 'Flower']\n",
+    "characteristics = ['Dangerous', 'Healthy', 'Red']\n",
+    "\n",
+    "zipped = zip(items, categories, characteristics)\n",
+    "\n",
+    "print(list(zipped))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "A `zip` can also be used with `enumerate` to iterate over the tuples inside the zip."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Steve Jobs\n",
+      "Bill Gates\n",
+      "Larry Page\n"
+     ]
+    }
+   ],
+   "source": [
+    "first_name = ['Steve', 'Bill', 'Larry']\n",
+    "last_name = ['Jobs', 'Gates', 'Page']\n",
+    "\n",
+    "full_name = zip(first_name, last_name)\n",
+    "\n",
+    "for i, (fn, ln) in enumerate(full_name): \n",
+    "    print(fn, ln)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The above example also shows a more practical application of the `zip` function. It is very common that in the data you have, first name and last names of individuals are stored as independent columns in a database. When you pick up such data from the database, you might find the `zip` function very useful to creates tuples of individual rows of the data. \n",
+    "\n",
+    "## Reversed\n",
+    "\n",
+    "The reversed function is a very commonly used function. It's basic use is to provide the contents of a sequence in the reverse order. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 8,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Original [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\n",
+      "Reversed [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]\n"
+     ]
+    }
+   ],
+   "source": [
+    "my_range = list(range(10))\n",
+    "reversed_range = list(reversed(my_range))\n",
+    "\n",
+    "print('Original', my_range)\n",
+    "print('Reversed', reversed_range)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The use of the `reversed` function does not affect the contents of the original sequence. Thereby the contents are not actually reversed, but the seuquence is simply iterated in a reverse order."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "***\n",
+    "Copyright (c) 2020, BlobCity, Inc."
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.8.4"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 4
+}
