@@ -6,7 +6,6 @@ You can open and run this entire repository on BlobCity A.I. Cloud.
 [<img src="http://cloud.blobcity.net/assets/images/badge.png" height="25" style="margin-bottom:-15px" />](https://cloud.blobcity.com/#/ps/shared-cloudbook/66c4fcaa-b0e4-4e0a-b275-49cdf007667a)
 
 # Upcoming Lessons
-* Lesson 7: Sets
 * Lesson 8: Functions
 * Lesson 9: Working with Files
 
