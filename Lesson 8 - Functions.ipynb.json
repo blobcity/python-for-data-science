@@ -1,0 +1,750 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Functions\n",
+    "\n",
+    "Functions are one of the most important parts of Python. Like any other language they allow to create re-usable components of code. But functions in Python are special. They are essentially objects in themselves and can be passed around as parameters. We will take a look at this in detail in the later parts of this module. \n",
+    "\n",
+    "Let's get started with functions. As a start, functions are defined using the `def` keyword. They can take in any number of argumemnts, and can return values. However in Python functions can return other functions as well; more about this later. \n",
+    "\n",
+    "Let's define our first function."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def my_func():\n",
+    "    print('Hello World')"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The above statement creates a function called `my_func`. Functions follow the same `:` and indentation principles to include blocks of code within the function. This function does not return a value, but simply prints `Hello World`. \n",
+    "\n",
+    "If we execute the above lines, nothing gets printed however. This is correctly so, as we have so far only defined the function, but not actually invoked it. So let's invoke the function we just defined. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Hello World\n"
+     ]
+    }
+   ],
+   "source": [
+    "my_func()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The above statement simply invokes the function `my_func` which results in the `print` statement being called and thereby `Hello World` being printed. \n",
+    "\n",
+    "## Passing Parameters"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Hello Tom\n",
+      "Hello Alice\n"
+     ]
+    }
+   ],
+   "source": [
+    "def my_func(name):\n",
+    "    print('Hello', name)\n",
+    "    \n",
+    "my_func('Tom')\n",
+    "my_func('Alice')"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "We can pass one or more parameters to a function. The parameters are specified in the function definion and are accessible within the function as variables. The above example prints the value of the parameter passed.\n",
+    "\n",
+    "Keep in mind that data type of parameters does not have to be defined in Python. Many languages require you to mention the data type of all function parameters along with the function definition itself, but not in Python. This means, each parameter can be of any valid type. \n",
+    "\n",
+    "Let's try this. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Hello 5\n",
+      "Hello [1, 2, 3]\n",
+      "Hello (1, 2, 3)\n"
+     ]
+    }
+   ],
+   "source": [
+    "my_func(5)\n",
+    "my_func([1,2,3])\n",
+    "my_func((1,2,3))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "We have successfully passed an integer, a list and a tuple to the same function. \n",
+    "\n",
+    "We can also pass any number of parameters to a function; and all parameters can be of any type. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Coordinates are ( 5 , 8 )\n"
+     ]
+    }
+   ],
+   "source": [
+    "def print_coordinates(x,y):\n",
+    "    print('Coordinates are (', x, ',', y, ')')\n",
+    "    \n",
+    "print_coordinates(5,8)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "All parameters values are assigned in the order in which they are specified. However, it is not necessary to pass them in exactly the same order. \n",
+    "\n",
+    "There are 2 important concepts to be understood when it comes to Python\n",
+    "* We can specify the parameter name and then pass the parameters in any order\n",
+    "* Function parameters can be made optional by providing default values\n",
+    "\n",
+    "Let's see if we can pass the value of `y` first and `x` later. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Coordinates are ( 5 , 8 )\n"
+     ]
+    }
+   ],
+   "source": [
+    "print_coordinates(y = 8, x = 5)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "As shown in the above code, we have passed `x` and `y` parameters in reverse order, and this is done so by respectively mentioning the name of the variables.\n",
+    "\n",
+    "In fact, in many scenarious it is a common practice to mention the name of the variables, even though they are passed in same order as the definition. This improves code readibility and prevents mistakes. \n",
+    "\n",
+    "## Skipping Parameters\n",
+    "\n",
+    "Python allows you to skip function parameters. This can be done so by assigning the parameter a default value in the event that none is passed. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Coordinates are ( 5 , 0 )\n"
+     ]
+    }
+   ],
+   "source": [
+    "def print_coordinates(x, y=0):\n",
+    "    print('Coordinates are (', x, ',', y, ')')\n",
+    "    \n",
+    "print_coordinates(5)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "As we can see we did not have to specify the value of `y`. By skipping `y` the value of `y` got defaulted to `0`. However, we still do have the option of specifying it, in which case the specified value of `y` would get used. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 8,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Coordinates are ( 5 , 6 )\n"
+     ]
+    }
+   ],
+   "source": [
+    "print_coordinates(5, 6)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "We can create a function with all parameters of the function having a default value. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 9,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Coordinates are ( 5 , 0 )\n"
+     ]
+    }
+   ],
+   "source": [
+    "def print_coordinates(x=-1, y=0):\n",
+    "    print('Coordinates are (', x, ',', y, ')')\n",
+    "    \n",
+    "print_coordinates(5)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Since `x` also now has a default value, we can invoke the function without specifying any parameters. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 10,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Coordinates are ( -1 , 0 )\n"
+     ]
+    }
+   ],
+   "source": [
+    "print_coordinates()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The default values of both `x` and `y` get used in such a scenario. \n",
+    "\n",
+    "Now, what if we wanted to only pass a value for `y`, and use the default value of `x`. We can do so my explicitely specifying the parameter name of `y` when passing the single argument. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 11,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Coordinates are ( -1 , 5 )\n"
+     ]
+    }
+   ],
+   "source": [
+    "print_coordinates(y=5)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "As we can see, the value of `y` got set to `5`, which is what we passed. Whereas `x` got defaulted to `-1`\n",
+    "\n",
+    "## Returning Values\n",
+    "\n",
+    "Now that we have seen how to pass parameters to a function, lets look at how we can return a value from a function. Let's take a simple function that accepts a number as input and returns `True` if the number is even, and `False` otherwise. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "2 is even? True\n",
+      "3 is even? False\n"
+     ]
+    }
+   ],
+   "source": [
+    "def isEven(x):\n",
+    "    if x % 2 == 0:\n",
+    "        return True\n",
+    "    else:\n",
+    "        return False\n",
+    "    \n",
+    "    \n",
+    "print('2 is even?', isEven(2))\n",
+    "print('3 is even?', isEven(3))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The above example shows the function returning a value. The return is conducted by using the `return` keyword.\n",
+    "\n",
+    "In Python it is not mandatory to use the `return` keyword. If the last logicial execution line results in an object, the function returns the object. In some cases you might be able to avoid specifying the `return` keyword."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 13,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "2 is even? None\n",
+      "3 is even? None\n"
+     ]
+    }
+   ],
+   "source": [
+    "def isEven(x):\n",
+    "    if x % 2 == 0:\n",
+    "        True\n",
+    "    else:\n",
+    "        False\n",
+    "    \n",
+    "    \n",
+    "print('2 is even?', isEven(2))\n",
+    "print('3 is even?', isEven(3))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Many Python developers do write the `return` keyword for sake of better readibility. On the contrary, there are also many Python developers who prefer not to write the `return` keyword as it makes the code more elegant. \n",
+    "\n",
+    "## Returning Multiple Values\n",
+    "\n",
+    "Unlike several other languages, Python allows you to return multiple values."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 14,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "3 square is: 9\n",
+      "3 cube is: 27\n"
+     ]
+    }
+   ],
+   "source": [
+    "def squareAndCube(x): \n",
+    "    return x*x, x*x*x\n",
+    "\n",
+    "x2, x3 = squareAndCube(3)\n",
+    "\n",
+    "print('3 square is:', x2)\n",
+    "print('3 cube is:', x3)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The above function returns both the square and cube of any number passed to it. It returns both values in a single return statement. \n",
+    "\n",
+    "It is important we spend some more time understanding what is happening here. Is the function really returning 2 independent objects, or it is returning a single object? The answer is, the function is returning a single object. This single object returned by the function is a Tuple. \n",
+    "\n",
+    "So basically the function is only returning a Tuple, and within the Tuple we have 2 items. These 2 items are getting unpacked when being assigned to the variable `x2` and `x3`. The syntax makes it appears like we have returned 2 independent variables in a single return statement. However what we have actually done is, we have created a tuple called `(x*x , x*x*x)`, returned this Tuple and then unpacked the Tuple into `(x2, x3)`.\n",
+    "\n",
+    "Let's test this hypothesis. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 15,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "(4, 8)\n"
+     ]
+    }
+   ],
+   "source": [
+    "my_val = squareAndCube(2)\n",
+    "\n",
+    "print(my_val)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "When we assigned the returned value to a single variable called `my_val` and printed the value fo `my_val`, we can see that the value is indeed `(4,8)`. This ia tuple containing the square and cube of the number 2. \n",
+    "\n",
+    "In Python, we can have control over the unpacking of the Tuple. This allow us to custom unpack the tuple to cherry pick specific values. Lets look at an example."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 16,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "9\n"
+     ]
+    }
+   ],
+   "source": [
+    "(x2,_) = squareAndCube(3)\n",
+    "\n",
+    "print(x2)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "We can see that we were able to ignore the second value of the tuple and pick up only `x2`. It worked perfectly as desired without having to create a variable for `x3`.\n",
+    "\n",
+    "What if we wanted to do the reverse?"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 17,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "27\n"
+     ]
+    }
+   ],
+   "source": [
+    "(_,x3) = squareAndCube(3)\n",
+    "\n",
+    "print(x3)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The reverse works too. We skipped `x2` and created a variable for only `x3`. \n",
+    "\n",
+    "It is needless to mention that you can return anything from a function. The return could be a list, dict, set or any any object for that matter. \n",
+    "\n",
+    "The above could also be achieved by returning an array."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 18,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "3 square is: 9\n",
+      "3 cube is: 27\n"
+     ]
+    }
+   ],
+   "source": [
+    "def squareAndCube(x): \n",
+    "    return [x*x, x*x*x]\n",
+    "\n",
+    "ret = squareAndCube(3)\n",
+    "\n",
+    "print('3 square is:', ret[0])\n",
+    "print('3 cube is:', ret[1])"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "We can also achieve the same thing by returning a dict as shown below. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 19,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "3 square is: 9\n",
+      "3 cube is: 27\n"
+     ]
+    }
+   ],
+   "source": [
+    "def squareAndCube(x): \n",
+    "    return {'x2': x*x, 'x3': x*x*x}\n",
+    "\n",
+    "ret = squareAndCube(3)\n",
+    "\n",
+    "print('3 square is:', ret['x2'])\n",
+    "print('3 cube is:', ret['x3'])"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "While there are many ways to achieve the same object. Returning the tuple is the recommended and most practiced approach in Python. Also tuples and generally lighter and faster than arrays and dictionaries. \n",
+    "\n",
+    "\n",
+    "## Functions are Objects\n",
+    "\n",
+    "A very important concept of Python is that all functions are objects in themselves. This is not just some theoretical concept, but indeed they are objects like behave like any other object. This means functions in python can be passed on as parameters to other functions. They can also be returned from other functions. We can also add functions into an array, or store them in a dict. Pretty interesting huh? Let's look at some examples. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 20,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "3 square is: 9\n",
+      "3 cube is: 27\n"
+     ]
+    }
+   ],
+   "source": [
+    "def squareAndCube(x): \n",
+    "    return x*x, x*x*x\n",
+    "    \n",
+    "my_func = squareAndCube\n",
+    "\n",
+    "x2, x3 = my_func(3)\n",
+    "\n",
+    "print('3 square is:', x2)\n",
+    "print('3 cube is:', x3)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Interestingly Python has allowed us to set the variable `my_func` to be equal to the function `squareAndCube`. This has now resulted in both `my_func` and `squareAndCube` to both be the same function. Essentially it is now the same function with 2 indepedent names. \n",
+    "\n",
+    "It is not true that we created a duplicate of the function. We did not. `squareAndCube` is in itself an indepdent object. This can be passed around to other functions as parameters. We simply assigned the object to another variable called `my_func`, just the way you would assign any object to any new variable. \n",
+    "\n",
+    "Let's try passing our function, which is an object, to another function. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 21,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "9\n",
+      "27\n"
+     ]
+    }
+   ],
+   "source": [
+    "def square(x): \n",
+    "    return x*x\n",
+    "\n",
+    "def cube(x):\n",
+    "    return x*x*x\n",
+    "    \n",
+    "def process3(func):\n",
+    "    print(func(3))\n",
+    "    \n",
+    "process3(square)\n",
+    "process3(cube)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The above example can be a bit hard to comprehend at first. We have defined 3 functions, namely `square`, `cube` and `process3`. The primary invocation is of function `process3`. This function performs a process on the number `3`. This number `3` is harded coded within the implementation of the function `process3` as identified by the line\n",
+    "\n",
+    "``` python\n",
+    "print(func(3))\n",
+    "```\n",
+    "\n",
+    "The number `3` in the above code is the hard coded `3`. The process `3` function invokes a function that takes a single argument. This function is called `func` and is invoked as\n",
+    "\n",
+    "``` python\n",
+    "func(3)\n",
+    "```\n",
+    "\n",
+    "However, `process3` accepts `func` as a parameter. This means `func` can map to any function that takes a single parameter as an input.\n",
+    "\n",
+    "It is also important to note that `func` must also return a value, else there is a chance that the `print` statement will fail. \n",
+    "\n",
+    "In 2 independent invocations of `process3` we pass the functions `square` and `cube` respectively as parameters to the function. Both `square` and `cube` are an object, and both objects are a function that accepts a single argument and returns a value. \n",
+    "\n",
+    "When we make the invocation `func(3)`, depending on what `func` is assigned to, it is equivalent to making either of the following calls\n",
+    "\n",
+    "``` python\n",
+    "print(square(3))\n",
+    "```\n",
+    "\n",
+    "or\n",
+    "\n",
+    "``` python\n",
+    "print(cube(3))\n",
+    "```\n",
+    "\n",
+    "We can also specify a default value for `func`. Let's take a look how. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 22,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "3\n",
+      "3\n"
+     ]
+    }
+   ],
+   "source": [
+    "def num(x):\n",
+    "    return x\n",
+    "\n",
+    "def square(x): \n",
+    "    return x*x\n",
+    "\n",
+    "def cube(x):\n",
+    "    return x*x*x\n",
+    "\n",
+    "def process3(func = num):\n",
+    "    print(func(3))\n",
+    "    \n",
+    "process3()\n",
+    "process3(num)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "In the above example, we have created an additional function called `num`. In the function definition of `process3` we have now defined `func = num`, thereby `num` being the default value of the variable `func` when no parameter is provided. \n",
+    "\n",
+    "We can now see that both these statements are valid calls\n",
+    "\n",
+    "``` python\n",
+    "process3() # defaults to process3(num)\n",
+    "process3(num) # same as above\n",
+    "```"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.8.4"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 4
+}
